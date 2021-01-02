@@ -1,50 +1,37 @@
- /*  Responsive Toggle */
- function classToggle() {
-  const navs = document.querySelectorAll('.Navbar__Items')
-  
-  navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
-}
+//Let's Create the JavaScript Part. 
 
-document.querySelector('.Navbar__Link-toggle')
-  .addEventListener('click', classToggle);
+const overlay = document.getElementById('overlay');
+const closeMenu = document.getElementById('close-menu');
 
 
-  /*  Seachbar  */
-
-  $(document).ready(function(){
-  $(".fa-search").click(function(){
-    $(".search-container").show(1000);
-    $(".Navbar__Items").hide(1000);
-  });
-});
-$(document).ready(function(){
-  $(".fa-times").click(function(){
-    $(".search-container").hide(1000);
-    $(".Navbar__Items").show(1000);
-  });
+document.getElementById('open-menu') .addEventListener('click', function() {
+    overlay.classList.add('show-menu');
 });
 
+document.getElementById('close-menu').addEventListener('click', function(){
+    overlay.classList.remove('show-menu')
+})
 
 
-/*  Scoll effect */
 
-window.onscroll = function() {scrollFunction()};
+/*    Slider    */
 
-function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    document.getElementById("logo").style.width = "150";
-  } else {
-    document.getElementById("logo").style.width = "230";
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
   }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
-
-/*  Cookies     */
-
- $(document).ready(function(){   
-    setTimeout(function () {
-        $("#cookieConsent").fadeIn(200);
-     }, 4000);
-    $("#closeCookieConsent, .cookieConsentOK").click(function() {
-        $("#cookieConsent").fadeOut(200);
-    }); 
-}); 
